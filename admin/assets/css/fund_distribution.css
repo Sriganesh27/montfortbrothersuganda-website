@@ -1,0 +1,64 @@
+/* admin/assets/css/fund_distribution.css */
+
+.loading-spinner {
+    color: var(--primary-blue);
+    font-weight: var(--weight-bold);
+    margin-left: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.received-amt {
+    color: var(--accent-green);
+    font-size: 1.05rem;
+}
+
+.dist-input {
+    width: 110px;
+    padding: 8px 10px;
+    border: 1px solid var(--border-color2);
+    border-radius: 6px;
+    font-family: var(--font-family);
+    font-weight: var(--weight-bold);
+    color: var(--primary-color);
+    background-color: var(--bg-white);
+    transition: all 0.3s ease;
+    text-align: right;
+}
+
+.dist-input:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px var(--glass-blue);
+}
+
+.save-btn {
+    background-color: var(--primary-color);
+    color: var(--bg-white);
+    border: none;
+    padding: 8px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: var(--weight-bold);
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.save-btn:hover {
+    background-color: var(--primary-light);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-light);
+}
+
+.save-btn:disabled {
+    background-color: var(--text-muted);
+    cursor: not-allowed;
+    transform: none;
+}
+
+.save-btn.success-state {
+    background-color: var(--accent-green);
+}

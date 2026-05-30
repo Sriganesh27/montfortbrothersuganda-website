@@ -1,0 +1,64 @@
+Options -Indexes
+
+# Block public access to the .env file and any other hidden files
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
+
+# 1. Protect Sensitive Configuration & Log Files
+<FilesMatch "\.(env|ini|log|json)$">
+    Require all denied
+</FilesMatch>
+
+<Files "db_config.php">
+    Require all denied
+</Files>
+
+# 2. Disable Directory Browsing & MultiViews (Crucial for API stability)
+Options -Indexes -MultiViews
+
+# Explicitly tell the server to load index.php when visiting a directory/root URL
+DirectoryIndex index.php index.html
+
+# 3. Security Headers (Fixed Line Breaks)
+<IfModule mod_headers.c>
+    # Clear headers first to prevent duplication from PHP scripts
+    Header unset X-Frame-Options
+    Header unset X-Content-Type-Options
+    
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    
+    # ⭐ FIX: Removed 'unsafe-inline' from script-src
+    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com https://img1.wsimg.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://csp.secureserver.net; object-src 'none';"
+</IfModule>
+
+# 4. Routing Engine (Fixed Redirection Chain)
+RewriteEngine On
+
+# A. Force HTTPS on the exact same host first
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# B. Then, force WWW
+RewriteCond %{HTTP_HOST} ^montfortbrothersuganda\.com$ [NC]
+RewriteRule ^(.*)$ https://www.montfortbrothersuganda.com/$1 [L,R=301]
+
+# C. Clean URLs: Force removal of .php from the address 
+# SECURITY FIX: We EXCLUDE the /api/ and /erp/controllers/ directories so POST form data isn't destroyed!
+RewriteCond %{REQUEST_URI} !/api/ [NC]
+RewriteCond %{REQUEST_URI} !/erp/controllers/ [NC]
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s([^.]+)\.php [NC]
+RewriteRule ^ %1 [R=301,L]
+
+# D. Clean URLs: Route the clean URL back to the actual .php file
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.*)$ $1.php [L]
+
+# 5. Custom Error Pages
+ErrorDocument 404 /404.php

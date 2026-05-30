@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Montfort Brothers of St. Gabriel:Uganda">
+    <link rel="icon" href="Images/logo_MBSG_UG_8.png">
+    <title>Montfort Brothers of St. Gabriel:Uganda</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navleft">
+            <div class="logo">
+                <img src="Images/logo_MBSG_UG_8.png" alt="logo">
+            </div>
+            <div class="mission">
+                <h1>Montfort Brothers of St. Gabriel</h1>
+                <p>Uganda</p>
+            </div>
+        </div>
+        
+        <div class="navright">
+            <div class="navlinks">
+                <ul>
+                <li><a href="index.php">Home</a></li>
+                <li class="dropdown">
+                    <a href="#vision">About Us <i class="fa-solid fa-caret-down"></i></a>
+                    <ul class="dropdown-content">
+                        <li><a href="#vision"><i class="fa fa-minus"></i> Our Vision</a></li>
+                        <li><a href="#heritage"><i class="fa fa-minus"></i> Our Heritage</a></li>
+                        <li><a href="#"><i class="fa fa-minus"></i> Aim & Characteristics</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#location">Where We Are <i class="fa-solid fa-caret-down"></i></a>
+                    <ul class="dropdown-content">
+                        <li><a href="#location"><i class="fa fa-minus"></i> Entebbe - Mpala</a></li>
+                        <li><a href="#location"><i class="fa fa-minus"></i> Jinja - Kyebando</a></li>
+                        <li><a href="#location"><i class="fa fa-minus"></i> Fort Portal - Isunga</a></li>
+                    </ul>
+                </li>
+                <li><a href="#galleryContainer">Gallery</a></li>
+                <li><a href="#unite-support">Unite</a></li>
+                <li><a href="#unite-support">Support US</a></li>
+            </ul>
+            </div>
+            
+            <div class="donate">
+                <a href="#" class="donate-button open-donate-popup">Donate</a>
+            </div>
+            <div class="toggle_btn">
+            <i class="fa-solid fa-bars"></i>
+            </div>
+        </div>
+        
+    </nav>

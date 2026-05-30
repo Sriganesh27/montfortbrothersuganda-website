@@ -1,0 +1,148 @@
+USE montfortug;
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- 1. DROP EXISTING TABLES
+DROP TABLE IF EXISTS erp_student_accounts, erp_academichistory, erp_parents, 
+                     erp_enrollment, erp_students, erp_enrollmenthistory, 
+                     erp_alumni, erp_users, erp_branches;
+
+-- 2. CREATE BRANCHES
+CREATE TABLE erp_branches (
+    branch_id INT PRIMARY KEY AUTO_INCREMENT,
+    branch_name VARCHAR(255) NOT NULL,
+    school_code VARCHAR(10),
+    branch_type VARCHAR(50),
+    branch_location VARCHAR(255)
+) ENGINE=InnoDB;
+
+INSERT INTO erp_branches (branch_id, branch_name, school_code, branch_type, branch_location) 
+VALUES 
+(1, 'St. Kizito Nursery and Primary', 'U011', 'Nursery/Primary', 'Kyebando'),
+(2, 'St. Montfort Nursery and Primary', 'U021', 'Nursery/Primary', 'Mpala'),
+(3, 'Pere Achte Senior Secondary', 'U032', 'Secondary', 'Isunga');
+
+-- 3. CREATE USERS
+CREATE TABLE erp_users (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(100) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    role VARCHAR(50),
+    assigned_branch INT,
+    is_active INT DEFAULT 1,
+    FOREIGN KEY (assigned_branch) REFERENCES erp_branches(branch_id) ON DELETE SET NULL
+) ENGINE=InnoDB;
+
+-- 4. CORE STUDENT TABLE (COMPOSITE KEY IS HERE)
+CREATE TABLE erp_students (
+    AdmissionNo INT NOT NULL,
+    branch_id INT NOT NULL,
+    AdmissionYear INT,
+    Name VARCHAR(100),
+    Surname VARCHAR(100) NOT NULL,
+    DateOfBirth DATE,
+    Gender VARCHAR(20),
+    HouseNo VARCHAR(100),
+    Street VARCHAR(100),
+    Village VARCHAR(100),
+    Town VARCHAR(100),
+    District VARCHAR(100),
+    State VARCHAR(100),
+    Country VARCHAR(100) DEFAULT 'Uganda',
+    PostalCode VARCHAR(50),
+    PhotoPath VARCHAR(255),
+    Status VARCHAR(50) DEFAULT 'Active',
+    PRIMARY KEY (branch_id, AdmissionNo)
+) ENGINE=InnoDB;
+
+-- 5. DEPENDENT TABLES (Linked via (branch_id, AdmissionNo))
+CREATE TABLE erp_enrollment (
+    EnrollmentID INT PRIMARY KEY AUTO_INCREMENT,
+    AdmissionNo INT NOT NULL,
+    branch_id INT NOT NULL,
+    AcademicYear VARCHAR(50),
+    Term VARCHAR(50),
+    Class VARCHAR(50),
+    Level VARCHAR(50),
+    Stream VARCHAR(50),
+    Residence VARCHAR(50),
+    EntryStatus VARCHAR(50),
+    FOREIGN KEY (branch_id, AdmissionNo) REFERENCES erp_students(branch_id, AdmissionNo) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+CREATE TABLE erp_parents (
+    ParentId INT PRIMARY KEY AUTO_INCREMENT,
+    AdmissionNo INT NOT NULL,
+    branch_id INT NOT NULL,
+    father_name VARCHAR(255),
+    father_contact VARCHAR(50),
+    father_email VARCHAR(100),
+    father_age INT,
+    father_occupation VARCHAR(100),
+    father_education VARCHAR(100),
+    mother_name VARCHAR(255),
+    mother_contact VARCHAR(50),
+    mother_email VARCHAR(100),
+    mother_age INT,
+    mother_occupation VARCHAR(100),
+    mother_education VARCHAR(100),
+    guardian_name VARCHAR(255),
+    guardian_relation VARCHAR(50),
+    guardian_contact VARCHAR(50),
+    guardian_email VARCHAR(100),
+    guardian_age INT,
+    guardian_occupation VARCHAR(100),
+    guardian_education VARCHAR(100),
+    guardian_address TEXT,
+    MoreInformation TEXT,
+    FOREIGN KEY (branch_id, AdmissionNo) REFERENCES erp_students(branch_id, AdmissionNo) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+CREATE TABLE erp_academichistory (
+    HistoryID INT PRIMARY KEY AUTO_INCREMENT,
+    AdmissionNo INT NOT NULL,
+    branch_id INT NOT NULL,
+    FormerSchool VARCHAR(255),
+    LIN VARCHAR(100),
+    Combination VARCHAR(100),
+    PLEIndexNumber VARCHAR(100),
+    PLEAggregate INT,
+    UCEIndexNumber VARCHAR(100),
+    UCEResult VARCHAR(100),
+    FOREIGN KEY (branch_id, AdmissionNo) REFERENCES erp_students(branch_id, AdmissionNo) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+CREATE TABLE erp_student_accounts (
+    account_id INT PRIMARY KEY AUTO_INCREMENT,
+    AdmissionNo INT NOT NULL,
+    branch_id INT NOT NULL,
+    username VARCHAR(100),
+    password VARCHAR(255),
+    is_active INT DEFAULT 1,
+    UNIQUE (username),
+    FOREIGN KEY (branch_id, AdmissionNo) REFERENCES erp_students(branch_id, AdmissionNo) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- 6. HISTORY & ALUMNI
+CREATE TABLE erp_enrollmenthistory (
+    log_id INT PRIMARY KEY AUTO_INCREMENT,
+    AdmissionNo INT,
+    branch_id INT,
+    AcademicYear VARCHAR(50),
+    Level VARCHAR(50),
+    Class VARCHAR(50),
+    Term VARCHAR(50),
+    Stream VARCHAR(50),
+    Residence VARCHAR(50),
+    EntryStatus VARCHAR(50),
+    DateMoved TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+CREATE TABLE erp_alumni (
+    alumni_id INT PRIMARY KEY AUTO_INCREMENT,
+    AdmissionNo INT,
+    branch_id INT,
+    CompletionYear VARCHAR(50),
+    Notes TEXT
+) ENGINE=InnoDB;
+
+SET FOREIGN_KEY_CHECKS = 1;

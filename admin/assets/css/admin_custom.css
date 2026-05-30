@@ -1,0 +1,17 @@
+/* assets/styles/admin_custom.css */
+.admin-bg-light {
+    background-color: #f4f6f9;
+}
+
+.budget-card {
+    border-left: 5px solid #0d6efd;
+    transition: transform 0.2s ease;
+}
+
+.budget-card:hover {
+    transform: translateY(-3px);
+}
+
+.main-content-area {
+    min-height: 100vh;
+}

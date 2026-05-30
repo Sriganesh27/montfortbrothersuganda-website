@@ -1,0 +1,3 @@
+# Block public web access to translation files and backups
+Order Deny,Allow
+Deny from all

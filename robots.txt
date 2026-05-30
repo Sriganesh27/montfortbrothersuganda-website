@@ -1,0 +1,13 @@
+# robots.txt for Montfort Uganda Website
+User-agent: *
+
+# Allow search engines to index your public pages
+Allow: /
+
+# Block access to sensitive system and backend folders
+Disallow: /admin/
+Disallow: /api/
+Disallow: /erp/
+
+# Link to your sitemap
+Sitemap: https://montfortbrothersuganda.com/sitemap.xml
