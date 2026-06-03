@@ -764,8 +764,9 @@ require_once "includes/security.php";
                     <i class="fa fa-hands-helping"></i>
                 </div>
                 <div class="text-box scroll-animate">
-                    <h2><span><?= t('support-hands-1') ?></span> <?= t('support-hands-2') ?></h2>
+                    <h2><span><?= t('about-support-hands-1') ?></span> <?= t('about-support-hands-2') ?></h2>
                 </div>
+                <div class="button scroll-animate"><a href="support.php" class="primary-fir"><?= t('about-btn-support') ?></a></div>
             </div>
         </section>
     </main>
