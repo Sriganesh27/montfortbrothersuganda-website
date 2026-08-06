@@ -178,7 +178,7 @@
   "index-volunteer-title": "Become a Volunteer",
   "index-volunteer-text": "Your time and skills can make a world of difference. Join hands with us as a volunteer and actively participate in our mission to transform lives, build infrastructure, and empower the youth of Uganda.",
   "index-volunteer-btn": "Volunteer Now",
-  "index-donors-title": "Our Generous Donors",
+  "index-donors-title": "Our Generous Individual Donors",
   "index-donors-subtitle": "With deep gratitude to those who share their resources to make our mission possible.",
   "table-donor-name": "Donor Name",
   "table-project-id": "Project ID",
@@ -191,7 +191,8 @@
   "table-spent": "Spent(%)",
   "index-unite-btn": "Unite With Us",
   "table-beneficiary-students": "Beneficiary Students",
-  "table-years": "No. of Years",
+  "table-benefit-year": "Benefit Year",
+  "table-terms": "No. of Terms",
   "table-reserved-dev": "Sustainable Reserve(%)",
 
     "_comment_8": "================ ABOUT PAGE ================",

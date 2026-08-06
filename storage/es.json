@@ -178,7 +178,7 @@
   "index-volunteer-title": "Hazte voluntario",
   "index-volunteer-text": "Su tiempo y sus habilidades pueden marcar un mundo de diferencia. Únase a nosotros como voluntario y participe activamente en nuestra misión de transformar vidas, construir infraestructura y empoderar a la juventud de Uganda.",
   "index-volunteer-btn": "Voluntario ahora",
-  "index-donors-title": "Nuestros Generosos Donantes",
+  "index-donors-title": "Nuestros generosos donantes individuales",
   "index-donors-subtitle": "Con profunda gratitud a quienes comparten sus recursos para hacer posible nuestra misión.",
   "table-donor-name": "Nombre del Donante",
   "table-project-id": "ID del Proyecto",
@@ -191,7 +191,8 @@
   "table-spent": "Gastado(%)",
   "index-unite-btn": "Únete a nosotros",
   "table-beneficiary-students": "Estudiantes Beneficiarios",
-  "table-years": "Nº de Años",
+  "table-benefit-year": "Año de beneficio",
+"table-terms": "N.º de trimestres",
   "table-reserved-dev": "Reserva Sostenible(%)",
 
     "_comment_8": "================ ABOUT PAGE ================",

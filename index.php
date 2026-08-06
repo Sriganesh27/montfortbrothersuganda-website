@@ -108,7 +108,7 @@ $recent_donors = [];
 try {
     // Dynamic subquery updated to exclude Reserve & grab students/terms
     $donor_stmt = $pdo->query("
-        SELECT dn.full_name, dn.is_anonymous, dn.project_id, dn.currency, dn.amount, dn.amount_received, dn.students_benefited, dn.terms_benefited,
+        SELECT dn.full_name, dn.is_anonymous, dn.project_id, dn.currency, dn.amount, dn.amount_received, dn.students_benefited, dn.benefit_year, dn.terms_benefited,
                (SELECT SUM(amount_allocated) FROM web_donor_distributions WHERE donation_id = dn.id AND category_name NOT IN ('Students Benefited', 'Sustainable Reserve')) as total_spent
         FROM web_donations dn
         WHERE dn.payment_status = 'success' 
@@ -568,7 +568,8 @@ try {
                                 <th colspan="3" class="text-center"><?= t('table-donated') ?></th>
                                 <th rowspan="2" class="text-center"><?= t('table-received-ugx') ?></th>
                                 <th rowspan="2" class="text-center"><?= t('table-beneficiary-students') ?></th>
-                                <th rowspan="2" class="text-center"><?= t('table-years') ?></th>
+                                <th rowspan="2" class="text-center"><?= t('table-benefit-year') ?></th>
+                                <th rowspan="2" class="text-center"><?= t('table-terms') ?></th>
                                 <th rowspan="2" class="text-center"><?= t('table-spent') ?></th>
                                 <th rowspan="2" class="text-center"><?= t('table-reserved-dev') ?></th>
                             </tr>
@@ -581,7 +582,7 @@ try {
                         <tbody>
                             <?php if (empty($recent_donors)): ?>
                                 <tr>
-                                    <td colspan="10" class="text-center"><?= t('table-empty') ?></td>
+                                    <td colspan="11" class="text-center"><?= t('table-empty') ?></td>
                                 </tr>
                             <?php else: ?>
                                 <?php foreach ($recent_donors as $donor): 
@@ -593,8 +594,23 @@ try {
                                     $received_ugx = $donor['amount_received'];
                                     
                                     // NEW: Variables for students, terms and calculations
-                                    $students_val = !empty($donor['students_benefited']) ? $donor['students_benefited'] : '-';
-                                    $terms_val = !empty($donor['terms_benefited']) ? $donor['terms_benefited'] . ' / 3' : '-';
+                                    $students_val = isset($donor['students_benefited'])
+                                        && $donor['students_benefited'] !== null
+                                        && $donor['students_benefited'] !== ''
+                                        ? (int) $donor['students_benefited']
+                                        : '-';
+
+                                    $benefit_year_val = isset($donor['benefit_year'])
+                                        && $donor['benefit_year'] !== null
+                                        && $donor['benefit_year'] !== ''
+                                        ? (int) $donor['benefit_year']
+                                        : '-';
+
+                                    $terms_val = isset($donor['terms_benefited'])
+                                        && $donor['terms_benefited'] !== null
+                                        && $donor['terms_benefited'] !== ''
+                                        ? (int) $donor['terms_benefited'] . ' / 3'
+                                        : '-';
 
                                     // DYNAMIC: Actual Spent Amount based on Subquery (excluding Reserve & Students Count)
                                     $spent_ugx = $donor['total_spent'] ? $donor['total_spent'] : 0;
@@ -612,6 +628,7 @@ try {
                                         <td class="text-center" style="color: #27ae60; font-weight: 700;"><?= number_format($received_ugx) ?></td>
                                         
                                         <td class="text-center"><?= $students_val ?></td>
+                                        <td class="text-center"><?= $benefit_year_val ?></td>
                                         <td class="text-center"><?= $terms_val ?></td>
                                         <td class="text-center" style="color: #e67e22; font-weight: 700;"><?= $spent_percent ?>%</td>
                                         <td class="text-center" style="color: #8e44ad; font-weight: 700;"><?= $reserved_percent ?>%</td>

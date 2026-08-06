@@ -179,7 +179,8 @@
     "index-unite-caption": "Intraprendiamo un viaggio per UNIRE l'intera razza umana con tutte le sue diversità, affinché la PACE crei l'ARMONIA della Creazione. DIAMO IL BENVENUTO a tutti coloro che sono IMPEGNATI in questa causa a UNIRSI a noi. Crediamo che questo possa essere fatto attraverso la PREGHIERA e la CONDIVISIONE delle risorse con chi è nel bisogno.",
     "index-unite-motto": "\"Uniti nella Preghiera per la Pace e la Prosperità\"",
     "table-beneficiary-students": "Studenti Beneficiari",
-  "table-years": "N. di Anni",
+     "table-benefit-year": "Anno del beneficio",
+"table-terms": "N. di trimestri",
   "table-reserved-dev": "Riserva Sostenibile (%)",
 
     "_comment_8": "================ ABOUT PAGE ================",
@@ -240,7 +241,7 @@
     "about-support-hands-1": "Con il tuo supporto possiamo fare di più -",
     "about-support-hands-2": "Unisciti a Noi",
     "about-btn-support": "Sostieni",
-    "index-donors-title": "I Nostri Generosi Donatori",
+    "index-donors-title": "I nostri generosi donatori individuali",
   "index-donors-subtitle": "Con profonda gratitudine a coloro che condividono le proprie risorse per rendere possibile la nostra missione.",
   "table-donor-name": "Nome del Donatore",
   "table-project-id": "ID Progetto",

@@ -14,6 +14,66 @@
     font-size: 1.05rem;
 }
 
+/*
+ * Keep the page content inside the available viewport width.
+ * This is required because <body> is a flex container and the global
+ * stylesheet hides horizontal page overflow.
+ */
+.main-content {
+    min-width: 0;
+}
+
+/*
+ * The table must scroll inside this container rather than expanding
+ * the whole page beyond the viewport.
+ */
+.table-container {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto !important;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+
+    /* Override the global rule that hides scrollbars. */
+    scrollbar-width: thin !important;
+    -ms-overflow-style: auto !important;
+}
+
+/*
+ * Allow the dynamic columns to keep their natural width.
+ * When they exceed the container width, the container scrolls.
+ */
+#distributionTable {
+    width: max-content;
+    min-width: 100%;
+    border-collapse: collapse;
+}
+
+#distributionTable th,
+#distributionTable td {
+    white-space: nowrap;
+}
+
+/* Visible horizontal scrollbar for Chrome, Edge and Safari. */
+.table-container::-webkit-scrollbar {
+    display: block;
+    height: 10px;
+}
+
+.table-container::-webkit-scrollbar-track {
+    background: var(--secondary-color);
+    border-radius: 10px;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+    background: var(--border-color2);
+    border-radius: 10px;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
+}
+
 .dist-input {
     width: 110px;
     padding: 8px 10px;
@@ -45,6 +105,7 @@
     display: inline-flex;
     align-items: center;
     gap: 6px;
+    white-space: nowrap;
 }
 
 .save-btn:hover {

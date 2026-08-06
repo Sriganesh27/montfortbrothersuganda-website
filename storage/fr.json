@@ -178,7 +178,7 @@
   "index-volunteer-title": "Devenir Bénévole",
   "index-volunteer-text": "Votre temps et vos compétences peuvent faire toute la différence. Joignez-vous à nous en tant que bénévole et participez activement à notre mission de transformer des vies, de construire des infrastructures et d'autonomiser les jeunes d'Ouganda.",
   "index-volunteer-btn": "Devenir bénévole",
-  "index-donors-title": "Nos Généreux Donateurs",
+  "index-donors-title": "Nos généreux donateurs individuels",
   "index-donors-subtitle": "Avec une profonde gratitude envers ceux qui partagent leurs ressources pour rendre notre mission possible.",
   "table-donor-name": "Nom du Donateur",
   "table-project-id": "ID du Projet",
@@ -191,7 +191,8 @@
   "table-spent": "Dépensés( %)",
   "index-unite-btn": "Unissez-vous avec nous",
   "table-beneficiary-students": "Étudiants Bénéficiaires",
-  "table-years": "Nb d'Années",
+  "table-benefit-year": "Année de prise en charge",
+"table-terms": "Nombre de trimestres",
   "table-reserved-dev": "Réserve Durable(%)",
 
     "_comment_8": "================ ABOUT PAGE ================",

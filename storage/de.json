@@ -178,7 +178,7 @@
   "index-volunteer-title": "Werden Sie Freiwilliger",
   "index-volunteer-text": "Ihre Zeit und Ihre Fähigkeiten können einen großen Unterschied machen. Schließen Sie sich uns als Freiwilliger an und beteiligen Sie sich aktiv an unserer Mission, Leben zu verändern, Infrastruktur aufzubauen und die Jugend Ugandas zu stärken.",
   "index-volunteer-btn": "Jetzt ehrenamtlich engagieren",
-  "index-donors-title": "Unsere Großzügigen Spender",
+  "index-donors-title": "Unsere großzügigen Einzelspender",
   "index-donors-subtitle": "Mit tiefem Dank an diejenigen, die ihre Ressourcen teilen, um unsere Mission zu ermöglichen.",
   "table-donor-name": "Spendername",
   "table-project-id": "Projekt-ID",
@@ -191,7 +191,8 @@
   "table-spent": "Ausgegeben(%)",
   "index-unite-btn": "Vereinigen Sie sich mit uns",
   "table-beneficiary-students": "Begünstigte Schüler",
-  "table-years": "Anzahl der Jahre",
+  "table-benefit-year": "Förderjahr",
+"table-terms": "Anzahl der Trimester",
   "table-reserved-dev": "Nachhaltigkeitsreserve (%)",
 
     "_comment_8": "================ ABOUT PAGE ================",
